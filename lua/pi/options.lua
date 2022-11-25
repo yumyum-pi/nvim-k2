@@ -32,8 +32,8 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
+  termguicolors=true,
 }
-         -- set term gui colors (most terminals support this)
 vim.opt.shortmess:append "c"
 
 

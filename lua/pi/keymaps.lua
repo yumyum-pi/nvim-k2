@@ -1,4 +1,5 @@
 local opts = { noremap = true, silent = true }
+local opts_s = { noremap = true }
 
 local term_opts = { silent = true }
 
@@ -20,12 +21,12 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-H>", "<C-w>h", opts)
+keymap("n", "<C-J>", "<C-w>j", opts)
+keymap("n", "<C-K>", "<C-w>k", opts)
+keymap("n", "<C-L>", "<C-w>l", opts_s)
 
-keymap("n", "<leader>e", ":Lex 20<cr>", opts)
+keymap("n", "<leader>e", ":Lex 24<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<Up>", ":resize +2<CR>", opts)
