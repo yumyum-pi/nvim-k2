@@ -4,7 +4,5 @@ require "pi.plugins"
 require "pi.colorscheme"
 require "pi.cmp"
 require "pi.lsp"
-
-function someting()
-	print("hello world")
-end
+require "pi.telescope"
+require "pi.treesitter"

@@ -28,11 +28,14 @@ keymap("n", "<C-L>", "<C-w>l", opts_s)
 
 keymap("n", "<leader>e", ":Lex 24<cr>", opts)
 
+keymap("n", "<leader>v", ":vsplit<cr>", opts)
+keymap("n", "<leader>h", ":split<cr>", opts)
+
 -- Resize with arrows
-keymap("n", "<Up>", ":resize +2<CR>", opts)
-keymap("n", "<Down>", ":resize -2<CR>", opts)
-keymap("n", "<Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-S-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-S-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-S-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-S-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -65,3 +68,8 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+
+-- Telescope
+keymap("n","<leader>f", "<cmd>Telescope find_files<cr>",opts)
+keymap("n","<leader>F", "<cmd>Telescope live_grep<cr>",opts)
