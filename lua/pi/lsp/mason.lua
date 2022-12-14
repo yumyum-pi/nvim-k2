@@ -3,6 +3,7 @@ local servers = {
 	"sumneko_lua",
 	"pyright",
 	"jsonls",
+	"gopls",
 }
 
 local settings = {
