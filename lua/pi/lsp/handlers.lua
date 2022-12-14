@@ -1,21 +1,3 @@
--- local goimports = require("pi.go").autoimort
-function goimports(wait_ms)
-	-- by default wait for 100 ms
-	local default = 100
-  wait_ms = wait_ms or default
- local params = vim.lsp.util.make_range_params()
- params.context = {only = {"source.organizeImports"}}
- local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
- for cid, res in pairs(result or {}) do
-	for _, r in pairs(res.result or {}) do
-	  if r.edit then
-		 local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-		 vim.lsp.util.apply_workspace_edit(r.edit, enc)
-	  end
-	end
- end
-end
-
 local M = {}
 
 -- TODO: backfill this to template
@@ -77,18 +59,6 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function nvim_create_augroups(definitions)
-	for group_name, definition in pairs(definitions) do
-		vim.api.nvim_command('augroup '..group_name)
-		vim.api.nvim_command('autocmd!')
-		for _, def in ipairs(definition) do
-			local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-			vim.api.nvim_command(command)
-		end
-		vim.api.nvim_command('augroup END')
-	end
-end
-
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -118,9 +88,9 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 	if client.name == "gopls" then
-		nvim_create_augroups({
+		require("pi.utils").nvim_create_augroups({
 			go_save = {
-				{"BufWritePre", "*.go", "lua goimports(1000)"},
+				{"BufWritePre", "*.go", ":lua require(\"pi.go\").autoimort(1000)"},
 			}
 		})
 	end
