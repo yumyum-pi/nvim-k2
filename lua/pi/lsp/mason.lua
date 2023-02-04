@@ -4,6 +4,7 @@ local servers = {
 	"pyright",
 	"jsonls",
 	"gopls",
+	"tsserver",
 }
 
 local settings = {
